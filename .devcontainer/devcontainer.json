@@ -1,0 +1,15 @@
+{
+    "name": "jupyter-devcontainer-project",
+    "dockerComposeFile": [
+        "./docker-compose.yml"
+    ],
+    "service": "jupyter",
+	"extensions": [
+		"ms-python.python"
+    ],
+    // 社内プロキシなどで、拡張機能がインストールできない場合にコメントを外す
+    // "settings": {
+    //     "http.proxyStrictSSL": false
+    // },
+    "workspaceFolder": "/home/jovyan/work"
+} 
