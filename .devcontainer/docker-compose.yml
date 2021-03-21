@@ -4,7 +4,10 @@ services:
   jupyter:
     build: .
     environment:
-      - JUPYTER_ENABLE_LAB=yes
+    # "JUPYTER_ENABLE_LAB=yes"にしていると、nebextensionsが使えなくなる
+      # - JUPYTER_ENABLE_LAB=yes
+      - GRANT_SUDO=yes
+    # volume共有はパフォーマンスが落ちるらしい
     volumes:
       - ../data:/home/jovyan/work
     working_dir: /home/jovyan/work

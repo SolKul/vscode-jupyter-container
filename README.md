@@ -21,15 +21,33 @@ clone this repository
 
 # メモ
 
-## nbextensionsについて
 
-選択中の文字を強調するために、`jupyter_contrib_nbextensions`をインストール。`jupyter-lab`は選択中の文字を強調する機能がないので使わない。ただ、`docker-compose.yml`で、
+## Jupyter Labについて
+
+徐々に推奨エディタが`Lab`に移り変わっているっぽい
+
+`loacalhost:8888/tree`にアクセスすると、従来の`jupyter notebook`に、  
+`loacalhost:8888/lab`にアクセスすると、`jupyter lab`にアクセスする
 
 ```docker-compose.yml
-- JUPYTER_ENABLE_LAB=yes
+environment:
+    - JUPYTER_ENABLE_LAB=yes
 ```
 
-としているが、`loaclhost:8888/tree`にアクセスすれば、`notebook`は使える。
+とすると、`localhost:8888`にアクセスした時点で`jupyter lab`にアクセスするするようになる。
+
+## nbextensionsについて
+
+`jupyter_contrib_nbextensions`は`jupyter notebook`でしか使えない。選択中の文字を強調する`Highlit Selected Word`を使いたいため、`jupyter notebook`+`jupyter_contrib_nbextensions`を使い続けている。いまのところ同じ機能は`jupyter lab`は対応していない。
+
+ただ、
+
+```docker-compose.yml
+environment:
+    - JUPYTER_ENABLE_LAB=yes
+```
+
+としてしまうと、`jupyter notebook`が`jupyter lab`管理下のものになってしまい、`jupyter_contrib_nbextensions`は使えなくなる。`jupyter_contrib_nbextensions`を使いたい場合は上はしないようにする。
 
 ## 権限について
 
@@ -41,10 +59,11 @@ clone this repository
 USER root
 ```
 
-として終われば`bash`は`root`で起動する。また上記のことをした上で、`docker-compose.yml`で、
+として終われば`bash`は`root`で起動する。また上記のように`root`でDockerfileを終え、、`docker-compose.yml`で、
 
 ```docker-compose.yml
-- GRANT_SUDO=yes
+environment:
+    - GRANT_SUDO=yes
 ```
 
 としていれば、`jovyan`も`sudo`が使えるようになる。
