@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook
+FROM jupyter/scipy-notebook
 # apt-getを使う場合は次4行をコメントアウトする。
 # USER root
 ## 高速化のため、リポジトリに日本のサーバを指定。
